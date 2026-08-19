@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+:root {
+  --brand: #2f8f58;
+  --brand-mid: #3aa366;
+  --brand-bright: #4fb87a;
+  --bg-void: #111111;
+  --bg-paper: #f6f4f0;
+  --bg-elevated: #ffffff;
+  --bg-panel: #ece8e2;
+  --text-primary: #f7f4ef;
+  --text-muted: #8c8882;
+  --ink: #1c1c1c;
+  --accent: var(--brand);
+  --accent-soft: rgba(47, 143, 88, 0.14);
+  --accent-line: var(--brand);
+  --line: rgba(28, 28, 28, 0.12);
+  --glow: transparent;
+  --steel: #6f6b66;
+  --count-ink: #1c1c1c;
+}
+
+@theme inline {
+  --color-void: var(--bg-void);
+  --color-elevated: var(--bg-elevated);
+  --color-panel: var(--bg-panel);
+  --color-ink: var(--text-primary);
+  --color-mute: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-line: var(--accent-line);
+  --color-brand: var(--brand);
+  --color-brand-mid: var(--brand-mid);
+  --color-brand-bright: var(--brand-bright);
+  --color-line: var(--line);
+  --color-steel: var(--steel);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  background: var(--bg-paper);
+  color: var(--ink);
+  font-family: var(--font-body), "Segoe UI", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 3rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition:
+    background 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
+
+.btn-primary {
+  background: var(--brand);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: var(--brand-mid);
+}
+
+.btn-ghost {
+  border: 1px solid rgba(247, 244, 239, 0.45);
+  background: transparent;
+  color: #f7f4ef;
+}
+
+.btn-ghost:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

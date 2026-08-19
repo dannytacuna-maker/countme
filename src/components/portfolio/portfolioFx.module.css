@@ -1,0 +1,133 @@
+.cursorBlock {
+  --mx: 0;
+  --my: 0;
+  --px: 50%;
+  --py: 50%;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgba(28, 28, 28, 0.1);
+  background: #ffffff;
+  transform: perspective(1100px) rotateX(calc(var(--my) * -4deg))
+    rotateY(calc(var(--mx) * 6deg))
+    translate3d(calc(var(--mx) * 8px), calc(var(--my) * 6px), 0);
+  transition:
+    transform 0.18s ease-out,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+  will-change: transform;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.cursorBlock::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(
+    260px circle at var(--px) var(--py),
+    rgba(47, 143, 88, 0.22),
+    transparent 62%
+  );
+  opacity: 0;
+  transition: opacity 0.16s ease;
+}
+
+.cursorBlock:hover,
+.cursorBlock:focus-within {
+  border-color: rgba(47, 143, 88, 0.34);
+  box-shadow:
+    0 0 0 1px rgba(47, 143, 88, 0.12),
+    0 18px 40px rgba(28, 28, 28, 0.1);
+}
+
+.cursorBlock:hover::before,
+.cursorBlock:focus-within::before {
+  opacity: 1;
+}
+
+.cursorInner {
+  position: relative;
+  z-index: 2;
+}
+
+.cursorCompact {
+  padding: 0;
+}
+
+.photoPop {
+  opacity: 0;
+  transform-origin: center bottom;
+  will-change: opacity, transform;
+  transform: translateY(14%) scale(0.92);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.photoPopIn {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+.photoPopOut {
+  opacity: 0;
+  transform: translateY(10%) scale(0.94);
+}
+
+.revealInline {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgba(28, 28, 28, 0.1);
+  background: #ddd9d3;
+  will-change: clip-path;
+}
+
+.revealBlock {
+  opacity: 0;
+  transform: translateY(1.4rem);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.revealBlockIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 860px) {
+  .cursorBlock {
+    transform: none;
+  }
+
+  .cursorBlock::before {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursorBlock,
+  .photoPop,
+  .photoPopIn,
+  .photoPopOut,
+  .revealBlock,
+  .revealBlockIn,
+  .revealInline {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    clip-path: none !important;
+  }
+}
